@@ -6,15 +6,15 @@ import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
-
+import Music from "./views/Music.vue";
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: "/",
-      name: "index",
-      components: { default: Index, header: MainNavbar, footer: MainFooter },
+      name: "login",
+      components: { default: Login, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
@@ -45,7 +45,16 @@ export default new Router({
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
       }
-    }
+    },
+      {
+          path: "/index",
+          name: "index",
+          components: { default: Index, header: MainNavbar, footer: MainFooter },
+          props: {
+              header: { colorOnScroll: 400 },
+              footer: { backgroundColor: "black" }
+          }
+      }
   ],
   scrollBehavior: to => {
     if (to.hash) {
