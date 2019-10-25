@@ -45,7 +45,7 @@
                 <label>Password...</label>
                 <md-input v-model="password"></md-input>
               </md-field>
-              <md-button slot="footer" class="md-simple md-success md-lg">
+              <md-button slot="footer" class="md-simple md-success md-lg" v-on:click="login">
                 Get Started
               </md-button>
             </login-card>
@@ -71,6 +71,16 @@ export default {
       password: null
     };
   },
+    methods: {
+        login: function (event) {
+            // `this` inside methods points to the Vue instance
+            alert('Hello ' + this.name + '!')
+            // `event` is the native DOM event
+            if (event) {
+                alert(event.target.tagName)
+            }
+        }
+    },
   props: {
     header: {
       type: String,
