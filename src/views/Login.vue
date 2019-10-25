@@ -75,18 +75,57 @@ export default {
     };
   },
     methods: {
-        login: function (event) {
-            // `this` inside methods points to the Vue instance
-            alert('Hello ' + this.name + '!');
-            var config = {
-              headers: {'Authorization': 'Bearer BQDSwcL68XxrizzYZQApxdCfxDDk6-2_tX_0T6Ht1Gbb0s9nAkOsPeSdM9_XwWz9j7o2VrgKqeTA0gA8KlN6fLAI-WHEs-RncQK97zhpiuFJ1YNKyb2ZYcx0k324VQPLt6JhWkW1GqJ786iASMar7tQ_15Mm5noWmA"'}
+        login: function () {
+
+                alert('Hello ' + this.name + '!');
+                var config = {
+                    headers: {'Authorization': 'Bearer BQDSwcL68XxrizzYZQApxdCfxDDk6-2_tX_0T6Ht1Gbb0s9nAkOsPeSdM9_XwWz9j7o2VrgKqeTA0gA8KlN6fLAI-WHEs-RncQK97zhpiuFJ1YNKyb2ZYcx0k324VQPLt6JhWkW1GqJ786iASMar7tQ_15Mm5noWmA"'}
+                }
+                axios.get('	https://api.spotify.com/v1/browse/categories', config)
+                // find the highest similarity
+                this.similarity(this.firstname,"123");
+/*            console.log(this.firstname);
+            console.log(this.email);
+            console.log(this.password);*/
+        },
+        similarity: function(s1, s2) {
+            var longer = s1;
+            var shorter = s2;
+            if (s1.length < s2.length) {
+                longer = s2;
+                shorter = s1;
             }
-            axios.get('	https://api.spotify.com/v1/browse/categories', config)
-      //       console.log(superagent)
-      //       superagent.get('www.google.com')
-      //       superagent.get('https://api.spotify.com/v1/browse/categories')
-      // .query('country=SE&locale=sv_SE&limit=10&offset=5')
-      // .set('Authorization', 'Bearer BQDSwcL68XxrizzYZQApxdCfxDDk6-2_tX_0T6Ht1Gbb0s9nAkOsPeSdM9_XwWz9j7o2VrgKqeTA0gA8KlN6fLAI-WHEs-RncQK97zhpiuFJ1YNKyb2ZYcx0k324VQPLt6JhWkW1GqJ786iASMar7tQ_15Mm5noWmA');
+            var longerLength = longer.length;
+            if (longerLength == 0) {
+                return 1.0;
+            }
+            return (longerLength - this.editDistance(longer, shorter)) / parseFloat(longerLength);
+        },
+        editDistance: function(s1, s2) {
+            s1 = s1.toLowerCase();
+            s2 = s2.toLowerCase();
+
+            var costs = new Array();
+            for (var i = 0; i <= s1.length; i++) {
+                var lastValue = i;
+                for (var j = 0; j <= s2.length; j++) {
+                    if (i == 0)
+                        costs[j] = j;
+                    else {
+                        if (j > 0) {
+                            var newValue = costs[j - 1];
+                            if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                                newValue = Math.min(Math.min(newValue, lastValue),
+                                    costs[j]) + 1;
+                            costs[j - 1] = lastValue;
+                            lastValue = newValue;
+                        }
+                    }
+                }
+                if (i > 0)
+                    costs[s2.length] = lastValue;
+            }
+            return costs[s2.length];
         }
     },
   props: {
