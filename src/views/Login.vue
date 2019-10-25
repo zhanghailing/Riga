@@ -49,6 +49,8 @@
                 Get Started
               </md-button>
             </login-card>
+
+            <div><music> </music></div>
           </div>
         </div>
       </div>
@@ -59,11 +61,13 @@
 <script>
 import { LoginCard } from "@/components";
 import axios from 'axios'
+import {Music} from "./Music";
 
 //const superagent = require('superagent');
 
 export default {
   components: {
+      Music,
     LoginCard
   },
   bodyClass: "login-page",
@@ -83,7 +87,7 @@ export default {
                 }
                 axios.get('	https://api.spotify.com/v1/browse/categories', config)
                 // find the highest similarity
-                this.similarity(this.firstname,"123");
+                console.log(this.similarity(this.firstname,"123"));
 /*            console.log(this.firstname);
             console.log(this.email);
             console.log(this.password);*/
