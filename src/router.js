@@ -56,12 +56,15 @@ export default new Router({
           }
       },
       {
-          path: "/music",
+          path: "/music/:firstname",
           name: "music",
           components: { default: Music, header: MainNavbar, footer: MainFooter },
-          props: {
-              header: { colorOnScroll: 400 },
-              footer: { backgroundColor: "black" }
+          props:(route) => {
+            console.log(route);
+            console.log(route.params);
+            console.log(route.params.firstname);
+            return ({ firstname: route.params.firstname, header: { colorOnScroll: 400 },
+              footer: { backgroundColor: "black" }})
           }
       }
   ],

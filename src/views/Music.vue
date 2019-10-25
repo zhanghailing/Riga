@@ -1,6 +1,4 @@
 <template>
-
-
         <div class="wrapper">
             <parallax class="page-header header-filter" :style="headerStyle">
                 <div class="md-layout">
@@ -11,8 +9,8 @@
                             <img :src="leaf2" alt="leaf2" class="leaf2" v-show="leafShow" />
                             <img :src="leaf1" alt="leaf1" class="leaf1" v-show="leafShow" />
                             <div class="brand">
-                                <h1>{{firstname}}</h1>
-                                <h3>Song name</h3>
+                                <h1>Song name</h1>
+                                <h3>{{this.firstname}}</h3>
                             </div>
                         </div>
                     </div>
@@ -26,7 +24,7 @@ export default {
     name:'music',
     bodyClass: "index-page",
     props: {
-        firstname:'test',
+        firstname:{type:String, default:"test"},
         image: {
             type: String,
             default: require("@/assets/img/vue-mk-header.jpg")
@@ -82,6 +80,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.firstname);
         this.leafActive();
         window.addEventListener("resize", this.leafActive);
     },
