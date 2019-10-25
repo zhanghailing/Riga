@@ -58,6 +58,9 @@
 
 <script>
 import { LoginCard } from "@/components";
+import axios from 'axios'
+
+//const superagent = require('superagent');
 
 export default {
   components: {
@@ -74,11 +77,16 @@ export default {
     methods: {
         login: function (event) {
             // `this` inside methods points to the Vue instance
-            alert('Hello ' + this.name + '!')
-            // `event` is the native DOM event
-            if (event) {
-                alert(event.target.tagName)
+            alert('Hello ' + this.name + '!');
+            var config = {
+              headers: {'Authorization': 'Bearer BQDSwcL68XxrizzYZQApxdCfxDDk6-2_tX_0T6Ht1Gbb0s9nAkOsPeSdM9_XwWz9j7o2VrgKqeTA0gA8KlN6fLAI-WHEs-RncQK97zhpiuFJ1YNKyb2ZYcx0k324VQPLt6JhWkW1GqJ786iASMar7tQ_15Mm5noWmA"'}
             }
+            axios.get('	https://api.spotify.com/v1/browse/categories', config)
+      //       console.log(superagent)
+      //       superagent.get('www.google.com')
+      //       superagent.get('https://api.spotify.com/v1/browse/categories')
+      // .query('country=SE&locale=sv_SE&limit=10&offset=5')
+      // .set('Authorization', 'Bearer BQDSwcL68XxrizzYZQApxdCfxDDk6-2_tX_0T6Ht1Gbb0s9nAkOsPeSdM9_XwWz9j7o2VrgKqeTA0gA8KlN6fLAI-WHEs-RncQK97zhpiuFJ1YNKyb2ZYcx0k324VQPLt6JhWkW1GqJ786iASMar7tQ_15Mm5noWmA');
         }
     },
   props: {
