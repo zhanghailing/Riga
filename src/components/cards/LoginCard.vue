@@ -41,6 +41,9 @@ export default {
     },
     getClass: function(headerColor) {
       return "md-card-header-" + headerColor + "";
+    },
+    login: function() {
+      
     }
   }
 };
