@@ -8,7 +8,7 @@
   >
     <div class="md-toolbar-row md-collapse-lateral">
       <div class="md-toolbar-section-start">
-        <h3 class="md-title">Vue Material Kit</h3>
+        <h3 class="md-title">Song of Your Name</h3>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -26,7 +26,7 @@
             <mobile-menu nav-mobile-section-start="false">
               <!-- Here you can add your items from the section-start of your toolbar -->
             </mobile-menu>
-            <md-list>
+           <!-- <md-list>
               <li class="md-list-item" v-if="!showDownload">
                 <a
                   href="javascript:void(0)"
@@ -87,7 +87,7 @@
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
                 >
                   <div class="md-list-item-content">
-                    <drop-down direction="down">
+&lt;!&ndash;                    <drop-down direction="down">
                       <md-button
                         slot="title"
                         class="md-button md-button-link md-white md-simple dropdown-toggle"
@@ -116,7 +116,7 @@
                           </a>
                         </li>
                       </ul>
-                    </drop-down>
+                    </drop-down>&ndash;&gt;
                   </div>
                 </a>
               </li>
@@ -151,7 +151,7 @@
                   >Follow us on Instagram</md-tooltip
                 >
               </md-list-item>
-            </md-list>
+            </md-list>-->
           </div>
         </div>
       </div>
