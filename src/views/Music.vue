@@ -1,78 +1,105 @@
 <template>
-    <div>
 
-    </div>
+
+        <div class="wrapper">
+            <parallax class="page-header header-filter" :style="headerStyle">
+                <div class="md-layout">
+                    <div class="md-layout-item">
+                        <div class="image-wrapper">
+                            <img :src="leaf4" alt="leaf4" class="leaf4" v-show="leafShow" />
+                            <img :src="leaf3" alt="leaf3" class="leaf3" v-show="leafShow" />
+                            <img :src="leaf2" alt="leaf2" class="leaf2" v-show="leafShow" />
+                            <img :src="leaf1" alt="leaf1" class="leaf1" v-show="leafShow" />
+                            <div class="brand">
+                                <h1>{{firstname}}</h1>
+                                <h3>Song name</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </parallax>
+        </div>
+
 </template>
-<script src="https://sdk.scdn.co/spotify-player.js"></script>
 <script>
-
-import { Tabs } from "@/components";
 export default {
-  components: {
-    Tabs
-  },
-  bodyClass: "profile-page",
-  data() {
-    return {
-      tabPane1: [
-        { image: require("@/assets/img/examples/studio-1.jpg") },
-        { image: require("@/assets/img/examples/studio-2.jpg") },
-        { image: require("@/assets/img/examples/studio-4.jpg") },
-        { image: require("@/assets/img/examples/studio-5.jpg") }
-      ],
-      tabPane2: [
-        { image: require("@/assets/img/examples/olu-eletu.jpg") },
-        { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
-        { image: require("@/assets/img/examples/cynthia-del-rio.jpg") },
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
-        { image: require("@/assets/img/examples/clem-onojegaw.jpg") }
-      ],
-      tabPane3: [
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
-        { image: require("@/assets/img/examples/studio-3.jpg") },
-        { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
-        { image: require("@/assets/img/examples/olu-eletu.jpg") },
-        { image: require("@/assets/img/examples/studio-1.jpg") }
-      ]
-    };
-  },
-  props: {
-    header: {
-      type: String,
-      default: require("@/assets/img/city-profile.jpg")
+    name:'music',
+    bodyClass: "index-page",
+    props: {
+        firstname:'test',
+        image: {
+            type: String,
+            default: require("@/assets/img/vue-mk-header.jpg")
+        },
+        leaf4: {
+            type: String,
+            default: require("@/assets/img/leaf4.png")
+        },
+        leaf3: {
+            type: String,
+            default: require("@/assets/img/leaf3.png")
+        },
+        leaf2: {
+            type: String,
+            default: require("@/assets/img/leaf2.png")
+        },
+        leaf1: {
+            type: String,
+            default: require("@/assets/img/leaf1.png")
+        },
+        signup: {
+            type: String,
+            default: require("@/assets/img/city.jpg")
+        },
+        landing: {
+            type: String,
+            default: require("@/assets/img/landing.jpg")
+        },
+        profile: {
+            type: String,
+            default: require("@/assets/img/profile.jpg")
+        }
     },
-    img: {
-      type: String,
-      default: require("@/assets/img/faces/christian.jpg")
+    methods: {
+        leafActive() {
+            if (window.innerWidth < 768) {
+                this.leafShow = false;
+            } else {
+                this.leafShow = true;
+            }
+        }
+    },
+    computed: {
+        headerStyle() {
+            return {
+                backgroundImage: `url(${this.image})`
+            };
+        },
+        signupImage() {
+            return {
+                backgroundImage: `url(${this.signup})`
+            };
+        }
+    },
+    mounted() {
+        this.leafActive();
+        window.addEventListener("resize", this.leafActive);
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.leafActive);
     }
-  },
-  computed: {
-    headerStyle() {
-      return {
-        backgroundImage: `url(${this.header})`
-      };
-    }
-  }
 };
 </script>
-
-<style lang="scss" scoped>
-.section {
-  padding: 0;
-}
-
-.profile-tabs /deep/ {
-  .md-card-tabs .md-list {
-    justify-content: center;
-  }
-
-  [class*="tab-pane-"] {
-    margin-top: 3.213rem;
-    padding-bottom: 50px;
-
-    img {
-      margin-bottom: 2.142rem;
+<style lang="scss">
+    .section-download {
+        .md-button + .md-button {
+            margin-left: 5px;
+        }
     }
-  }
-}
+
+    @media all and (min-width: 991px) {
+        .btn-container {
+            display: flex;
+        }
+    }
 </style>

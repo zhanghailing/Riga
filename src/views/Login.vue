@@ -48,9 +48,12 @@
               <md-button slot="footer" class="md-simple md-success md-lg" v-on:click="login">
                 Get Started
               </md-button>
+
             </login-card>
 
-            <div><music> </music></div>
+            <div>
+              <music v-bind:name="name"> </music>
+            </div>
           </div>
         </div>
       </div>
@@ -61,14 +64,13 @@
 <script>
 import { LoginCard } from "@/components";
 import axios from 'axios'
-import {Music} from "./Music";
-
+import { Music } from "@/components";
 //const superagent = require('superagent');
 
 export default {
   components: {
-      Music,
-    LoginCard
+    LoginCard,
+      Music
   },
   bodyClass: "login-page",
   data() {
@@ -88,6 +90,7 @@ export default {
                 axios.get('	https://api.spotify.com/v1/browse/categories', config)
                 // find the highest similarity
                 console.log(this.similarity(this.firstname,"123"));
+            this.$router.push({ name: 'music'})
 /*            console.log(this.firstname);
             console.log(this.email);
             console.log(this.password);*/
